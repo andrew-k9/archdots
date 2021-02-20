@@ -9,7 +9,7 @@ symlink() {
 	cd $1
 	files=$(find | sed 's/^\.//g' | sed 's/^\///g')
 	for f in $files; do 
-		ln -sf "$1/$f $2/$f"
+		ln -sfn $1/$f $2/$f
 		echo "$2/$f to $1/$f"
 	done
 }
