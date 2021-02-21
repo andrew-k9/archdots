@@ -24,3 +24,49 @@ symlink "$DFP/system" "$HOME"
 symlink "$DFP/qtile" "$HOME/.config/qtile"
 symlink "$DFP/kitty" "$HOME/.config/kitty"
 
+# 2 - install all the packages
+# Assumes you've set up a user and installed
+# sudo already. More of a reminder list so may not 
+# be 100% effective!
+echo "Do you want to install programs? [y/n]: "
+read INSTALL
+if [[ INSTALL == [yY] ]] 
+then
+  sudo pacman -S \
+    vim \
+    grub \
+    efibootmgr \
+    dosfstools \
+    os-prober \
+    mtools \
+    networkmanager \
+    curl \ 
+    zsh \
+    kitty \
+    qtile \
+    openssh \
+  grub-install --target=x86_64-efi --efi-directory=/boot
+  mkdir /boot/EFI/boot
+  cp /boot /EFI/arch/grubx64.efi /boot/EFI/boot/bootx64.efi
+  echo "Have you enabled multilib?? [yY]: "
+  read MULTILIB
+  if [[ MULTILIB == [yY] ]]
+  then 
+    sudo pacman -S \
+      xorg \
+      xorg-server \
+      xorg-app \
+      xorg-init \
+      lightdm \
+      lightdm-gtk-greeter lightdm-gtk-greeter-settings
+    sudo systemctl enable lightdm.service
+  fi
+  echo "Make zshell default? [y/n]: "
+  read DSHELL
+  if [[ DSHELL == [yY] ]]
+  then
+    sudo chsh -s $(which zsh)
+  fi
+  reboot
+fi
+
