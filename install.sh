@@ -16,6 +16,7 @@ symlink() {
 
 # 1 - link the files
 symlink "$DFP/vim" "$HOME"
+symlink "$DFP/.vim/autoload" "$HOME/.vim/autoload"
 symlink "$DFP/zsh" "$HOME"
 symlink "$DFP/bash" "$HOME"
 symlink "$DFP/git" "$HOME"
