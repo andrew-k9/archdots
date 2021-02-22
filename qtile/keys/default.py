@@ -1,7 +1,7 @@
 from libqtile.lazy import lazy
 from libqtile.config import Key
 
-def set_keys(mod, terminal):
+def custom_keys(mod, terminal):
     keys = [
         # Switch between windows
         Key([mod], "h", lazy.layout.left(), desc="Move focus to left"),
