@@ -58,7 +58,7 @@ then
 		cd yay
 		makepkg -si
 		cd $DFP
-		yay -S nerd-fonts-jetbrains-mono nerd-fonts-overpass
+		yay -S nerd-fonts-jetbrains-mono nerd-fonts-fira-code
 		fc-cache -fv
 	fi
   echo "Have you enabled multilib? [y/n]: "
