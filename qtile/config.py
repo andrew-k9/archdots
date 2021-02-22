@@ -32,7 +32,7 @@ from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
 
 from keys.default import custom_keys
-from bars.default import status_bar
+from bars.gengarch import status_bar
 
 mod = "mod4"
 terminal = guess_terminal()
