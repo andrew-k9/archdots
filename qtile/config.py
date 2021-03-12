@@ -31,6 +31,8 @@ from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
 
+from libqtile.log_utils import logger
+
 from keys.default import custom_keys
 from bars.gengarch import status_bar
 
@@ -40,21 +42,24 @@ terminal = guess_terminal()
 keys = custom_keys(mod, terminal)
 top_bar = status_bar()
 
-groups = [Group(i) for i in "123456789"]
+group_array = [
+        ("\ue7c5", {"layout": "xmonadtall"})
+        ("\uf269", {"layout": "treetab"}),
+        ("\ue795", {"layout": "xmonadwide"}), 
+        ("4", {"layout": "max"}), 
+        ("5", {"layout": "max"})
+]
 
-for i in groups:
+groups = [Group(name, **args) for name, args in group_array]
+
+for i, (name, args) in enumerate(group_array, 1):
     keys.extend([
         # mod1 + letter of group = switch to group
-        Key([mod], i.name, lazy.group[i.name].toscreen(),
-            desc="Switch to group {}".format(i.name)),
-
+        Key([mod], str(i), lazy.group[name].toscreen(),
+            desc="Switch to group {}".format(name)),
         # mod1 + shift + letter of group = switch to & move focused window to group
-        Key([mod, "shift"], i.name, lazy.window.togroup(i.name, switch_group=True),
-            desc="Switch to & move focused window to group {}".format(i.name)),
-        # Or, use below if you prefer not to switch to that group.
-        # # mod1 + shift + letter of group = move focused window to group
-        # Key([mod, "shift"], i.name, lazy.window.togroup(i.name),
-        #     desc="move focused window to group {}".format(i.name)),
+        Key([mod, "shift"], str(i), lazy.window.togroup(name, switch_group=True),
+            desc="Switch to & move focused window to group {}".format(name)),
     ])
 
 layouts = [
@@ -64,11 +69,11 @@ layouts = [
     # layout.Stack(num_stacks=2),
     # layout.Bsp(),
     # layout.Matrix(),
-    # layout.MonadTall(),
-    # layout.MonadWide(),
+    layout.MonadTall(),
+    layout.MonadWide(),
     # layout.RatioTile(),
     # layout.Tile(),
-    # layout.TreeTab(),
+    layout.TreeTab(),
     # layout.VerticalTile(),
     # layout.Zoomy(),
 ]
