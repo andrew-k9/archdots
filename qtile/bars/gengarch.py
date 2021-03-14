@@ -1,27 +1,73 @@
 from libqtile import bar, widget
 
-def icon():
-    return widget.TextBox(text = '\uf91c')
+BAR_COLORS = {
+    'bar': '#282a36',
+    'lightBar': '#44475a',
+    'gengar': '#7b62a4',
+}
 
-def status_bar():
+BAR_MARGIN = 6
+
+def corner(icon, color, background=None):
+    """ 
+        Adds in a color transition corner icon
+        @param: icon   - nerd font icon 
+        @param: color  - hex color
+        @param: background - background hex color
+    """
+    return widget.TextBox(
+        background=background,
+        foreground=color,
+        fontsize=24,
+        text=icon
+    )
+
+def icon():
+    return widget.TextBox(
+        padding=8,
+        text='\uf91c', 
+    )
+
+def group_box():
+    return widget.GroupBox(
+        background=BAR_COLORS['lightBar'],
+        highlight_method='line',
+        padding=0,
+        spacing=5
+    )
+
+def status_bar_top():
     return bar.Bar(
         [
             icon(),
-            widget.CurrentLayout(),
-            widget.GroupBox(),
-            widget.Prompt(),
-            widget.WindowName(),
+            widget.CurrentLayout(fmt='| {} |', padding=5),
+            corner('\ue0c5', BAR_COLORS['lightBar']),
+            group_box(),
+            corner('\ue0c7', BAR_COLORS['gengar'], BAR_COLORS['lightBar']),
+            widget.Prompt(background=BAR_COLORS['gengar']),
+            widget.WindowName(background=BAR_COLORS['gengar']),
             widget.Chord(
                 chords_colors={
                     'launch': ("#ff0000", "#ffffff"),
                 },
                 name_transform=lambda name: name.upper(),
             ),
-            widget.TextBox("default config", name="default"),
-            widget.TextBox("Press &lt;M-r&gt; to spawn", foreground="#d75f5f"),
-            widget.Systray(),
-            widget.Clock(format='%Y-%m-%d %a %I:%M %p'),
+
+            corner('\ue0c7', BAR_COLORS['lightBar'], BAR_COLORS['gengar']),
+            widget.Clock(background=BAR_COLORS['lightBar'],format='%a %H:%M'),
             widget.QuickExit(),
         ],
         24,
+        background=BAR_COLORS['bar'],
+        margin=BAR_MARGIN
+    )
+
+def status_bar_bottom():
+    return bar.Bar(
+        [
+            widget.Net(interface="wlo1", interval=100000),
+        ],
+        24,
+        background=BAR_COLORS['bar'],
+        margin=BAR_MARGIN
     )

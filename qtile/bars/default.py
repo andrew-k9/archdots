@@ -1,6 +1,6 @@
 from libqtile import bar, widget
 
-def status_bar():
+def status_bar_top():
     return bar.Bar(
         [
             widget.CurrentLayout(),
@@ -20,4 +20,10 @@ def status_bar():
             widget.QuickExit(),
         ],
         24,
+    )
+def status_bar_bottom():
+    return bar.Bar(
+        [
+        ],
+        24
     )

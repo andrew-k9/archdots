@@ -24,30 +24,35 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+import os, subprocess
 from typing import List  # noqa: F401
 
 from libqtile import bar, layout, widget
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
+from libqtile import hook
 
 from libqtile.log_utils import logger
 
 from keys.default import custom_keys
-from bars.gengarch import status_bar
+from bars.gengarch import status_bar_top, status_bar_bottom
+
+
 
 mod = "mod4"
 terminal = guess_terminal()
 
 keys = custom_keys(mod, terminal)
-top_bar = status_bar()
+top_bar = status_bar_top()
+bottom_bar = status_bar_bottom()
 
 group_array = [
-        ("\ue7c5", {"layout": "xmonadtall"})
-        ("\uf269", {"layout": "treetab"}),
-        ("\ue795", {"layout": "xmonadwide"}), 
-        ("4", {"layout": "max"}), 
-        ("5", {"layout": "max"})
+        ("\ue7c5 Code", {"layout": "monadtall"}),
+        ("\uf269  Browser", {"layout": "treetab"}),
+        ("\ue795 Shell", {"layout": "monadwide"}), 
+        ("\uf832 Music", {"layout": "max"}), 
+        ("\uf6ed Social", {"layout": "max"})
 ]
 
 groups = [Group(name, **args) for name, args in group_array]
@@ -85,7 +90,7 @@ widget_defaults = dict(
 )
 extension_defaults = widget_defaults.copy()
 
-screens = [ Screen(top=top_bar) ]
+screens = [ Screen(top=top_bar, bottom=bottom_bar) ]
 
 # Drag floating layouts.
 mouse = [
@@ -124,3 +129,8 @@ focus_on_window_activation = "smart"
 # We choose LG3D to maximize irony: it is a 3D non-reparenting WM written in
 # java that happens to be on java's whitelist.
 wmname = "LG3D"
+
+@hook.subscribe.startup
+def autostart():
+    home = os.path.expanduser('~/.config/qtile/autostart.sh')
+    subprocess.call([home])
