@@ -40,7 +40,7 @@ def status_bar_top():
     return bar.Bar(
         [
             icon(),
-            widget.CurrentLayout(fmt='| {} |', padding=5),
+            widget.CurrentLayoutIcon(scale=0.66),
             corner('\ue0c5', BAR_COLORS['lightBar']),
             group_box(),
             corner('\ue0c7', BAR_COLORS['gengar'], BAR_COLORS['lightBar']),
@@ -55,7 +55,8 @@ def status_bar_top():
 
             corner('\ue0c7', BAR_COLORS['lightBar'], BAR_COLORS['gengar']),
             widget.Clock(background=BAR_COLORS['lightBar'],format='%a %H:%M'),
-            widget.QuickExit(),
+            corner('\ue0c7', BAR_COLORS['bar'], BAR_COLORS['lightBar']),
+            widget.QuickExit(countdown_format='{}', default_text='\uf011', padding=5),
         ],
         24,
         background=BAR_COLORS['bar'],
