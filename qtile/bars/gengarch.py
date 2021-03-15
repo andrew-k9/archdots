@@ -21,9 +21,10 @@ def corner(icon, foreground, background=None):
     )
 
 def icon():
-    return widget.TextBox(
-        padding=8,
-        text='\uf91c', 
+    return widget.Image(
+        filename='~/.config/qtile/images/ghastly.svg',
+        margin_x=8,
+        margin_y=3,
     )
 
 def group_box():
