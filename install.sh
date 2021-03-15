@@ -28,7 +28,7 @@ symlink "$DFP/kitty" "$HOME/.config/kitty"
 # Assumes you've set up a user and installed
 # sudo already. More of a reminder list so may not 
 # be 100% effective!
-echo "Do you want to install programs? [y/n]: "
+echo -p "Do you want to install programs? [y/n]: "
 read INSTALL
 if [[ INSTALL == [yY] ]] 
 then
@@ -45,10 +45,23 @@ then
     kitty \
     qtile \
     openssh \
+    base-devel 
   grub-install --target=x86_64-efi --efi-directory=/boot
   mkdir /boot/EFI/boot
   cp /boot /EFI/arch/grubx64.efi /boot/EFI/boot/bootx64.efi
-  echo "Have you enabled multilib?? [yY]: "
+  echo -p "Install yay (needed for fonts)? [y/n]: "
+  read YAY
+  if [[ YAY == [yY] ]]
+  then
+		cd ~
+		git clone https://aur.archlinux.org/yay.git
+		cd yay
+		makepkg -si
+		cd $DFP
+		yay -S nerd-fonts-jetbrains-mono nerd-fonts-fira-code
+		fc-cache -fv
+	fi
+  echo "Have you enabled multilib? [y/n]: "
   read MULTILIB
   if [[ MULTILIB == [yY] ]]
   then 
@@ -61,6 +74,7 @@ then
       lightdm-gtk-greeter lightdm-gtk-greeter-settings
     sudo systemctl enable lightdm.service
   fi
+  echo -p "Install fonts?"
   echo "Make zshell default? [y/n]: "
   read DSHELL
   if [[ DSHELL == [yY] ]]

@@ -7,7 +7,7 @@ export ZSH="/home/andrew/.oh-my-zsh"
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="robbyrussell"
 
-plugins=(git)
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 plugins=(
 	fzf
