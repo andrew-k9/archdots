@@ -37,7 +37,10 @@ Plug 'itchyny/lightline.vim'
 Plug 'vim-scripts/vim-gitgutter'
 Plug 'preservim/nerdtree'
 Plug 'liuchengxu/space-vim-dark'
-Plug 'tpope/vim-fugitive' 
+Plug 'tpope/vim-fugitive'
+Plug 'Shougo/neocomplete.vim'
+Plug 'ryanoasis/vim-devicons'
+Plug 'sheerun/vim-polyglot'
 call plug#end()
 
 " Plugin colors

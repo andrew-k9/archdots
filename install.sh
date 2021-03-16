@@ -45,6 +45,8 @@ then
     kitty \
     qtile \
     openssh \
+    ripgrep \
+    fzf \
     base-devel 
   grub-install --target=x86_64-efi --efi-directory=/boot
   mkdir /boot/EFI/boot
