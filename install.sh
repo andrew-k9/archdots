@@ -74,6 +74,7 @@ then
       lightdm-gtk-greeter lightdm-gtk-greeter-settings
     sudo systemctl enable lightdm.service
   fi
+  sudo pacman -S alsa-utils
   echo -p "Install fonts?"
   echo "Make zshell default? [y/n]: "
   read DSHELL

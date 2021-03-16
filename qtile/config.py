@@ -38,8 +38,6 @@ from libqtile.log_utils import logger
 from keys.default import custom_keys
 from bars.gengarch import status_bar_top, status_bar_bottom
 
-
-
 mod = "mod4"
 terminal = guess_terminal()
 

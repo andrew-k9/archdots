@@ -79,6 +79,19 @@ def cpu(background):
         format='\ufb19 {freq_current}GHz {load_percent}%',
     )
 
+def audio(background):
+    return widget.Volume(
+        background=background,
+        padding=8,
+    )
+
+def text_icon(icon, foreground, background):
+    return widget.TextBox(
+        background=background,
+        foreground=foreground,
+        text=icon
+    )
+
 def status_bar_top():
     return bar.Bar(
         [
@@ -97,9 +110,11 @@ def status_bar_top():
             ),
             corner('\ue0c7', BAR_COLORS['lightBar'], BAR_COLORS['gengar']),
             widget.Clock(background=BAR_COLORS['lightBar'],format='%a %H:%M', padding=10),
+            text_icon('\ufa7d', '#ffffff', BAR_COLORS['lightBar']),
+            audio(BAR_COLORS['lightBar']),
             corner('\ue0c7', BAR_COLORS['bar'], BAR_COLORS['lightBar']),
             battery(),
-            widget.QuickExit(countdown_format='{}', default_text='\uf011', padding=25),
+            widget.QuickExit(countdown_format='{}', default_text='\uf011', padding=20),
         ],
         24,
         background=BAR_COLORS['bar'],
