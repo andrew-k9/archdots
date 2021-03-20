@@ -16,7 +16,7 @@ symlink() {
 
 # 1 - link the files
 symlink "$DFP/vim" "$HOME"
-symlink "$DFP/.vim/autoload" "$HOME/.vim/autoload"
+symlink "$DFP/neovim" "$HOME/.config/nvim"
 symlink "$DFP/zsh" "$HOME"
 symlink "$DFP/bash" "$HOME"
 symlink "$DFP/git" "$HOME"
@@ -33,7 +33,7 @@ read INSTALL
 if [[ INSTALL == [yY] ]] 
 then
   sudo pacman -S \
-    vim \
+    neovim \
     grub \
     efibootmgr \
     dosfstools \
