@@ -37,3 +37,7 @@ kitty + complete setup zsh | source /dev/stdin
 
 source $ZSH/oh-my-zsh.sh
 
+## Programming languages
+. $HOME/.asdf/asdf.sh
+
+

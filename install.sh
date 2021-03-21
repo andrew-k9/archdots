@@ -84,6 +84,13 @@ then
   then
     sudo chsh -s $(which zsh)
   fi
+  echo "Install Programming stuff?"
+  read TMP
+  if [[ TMP == [yY] ]]
+  then
+    git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.8.0
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+  fi
   reboot
 fi
 
