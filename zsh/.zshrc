@@ -5,11 +5,12 @@
 export ZSH="/home/andrew/.oh-my-zsh"
 
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="kolo"
+ZSH_THEME="dracula"
 
 source ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 plugins=(
+  asdf
 	fzf
   git
   zsh-autosuggestions

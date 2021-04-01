@@ -63,6 +63,8 @@ then
 		yay -S nerd-fonts-jetbrains-mono nerd-fonts-fira-code
 		fc-cache -fv
 	fi
+  git clone https://github.com/dracula/zsh.git ~/.config
+  ln -fs ~/.config/dracula.zsh-theme ~/.oh-my-zsh/themes/themes/dracula.zsh-theme
   echo "Have you enabled multilib? [y/n]: "
   read MULTILIB
   if [[ MULTILIB == [yY] ]]
